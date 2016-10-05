@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import WeatherView from './components/WeatherView';
-import WeatherClick from './container/WeatherClick';
+import Weather from './container/Weather';
 
 ReactDOM.render(
-    <WeatherView />,
+    <Weather />,
     document.getElementById("weather")
 );
