@@ -13,11 +13,7 @@ class WeatherStore extends EventEmitter {
 
     createWeather (action) {
         this.weather = [];
-        action.weather.map((el) => {
-            el.id = Math.random();
-            return this.weather.push(el);
-        })
-
+        this.weather = action.weather;
         this.emit('change');
     }
 

@@ -12,6 +12,9 @@ export default class WeatherLine extends React.Component {
         this.state = {
             weather: WeatherStore.getAll()
         }
+
+        this.state.weather.forecast = [];
+        this.state.weather.condition = {};
     }
 
     componentDidMount() {
@@ -29,9 +32,6 @@ export default class WeatherLine extends React.Component {
     }
 
     showWeather () {
-        this.setState({
-            weather: []
-        });
         WeatherAction.getWeather();
     }
 
@@ -42,7 +42,8 @@ export default class WeatherLine extends React.Component {
                 <button onClick={this.showWeather.bind(this)}>
                     Показать погоду
                 </button>
-
+                <h4>Погода сегодня</h4>
+                <p>{this.state.weather.condition.temp} *C, {this.state.weather.condition.text}</p>
                 <table className="table table-hover">
                     <thead>
                         <tr>
@@ -54,7 +55,8 @@ export default class WeatherLine extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.weather.map((el) => {
+                        {this.state.weather.forecast.map((el) => {
+                            el.id = Math.random();
                             return (
                                 <tr key={el.id}>
                                     <td>{el.date}</td>
